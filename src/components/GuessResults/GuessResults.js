@@ -2,19 +2,10 @@ import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 import Guess from "../Guess";
 import { range } from "../../utils";
 
-function GuessResults({
-  guessList,
-  answer,
-  setHasWon,
-  setNumOfGuesses,
-  setShowEndBanner,
-}) {
-  console.log(guessList.length);
-
+function GuessResults({ guessList, answer, setGameStatus, setNumOfGuesses }) {
   function isGameOver() {
     if (guessList.length === 6) {
-      setShowEndBanner(true);
-      setHasWon(false);
+      setGameStatus("lost");
     }
   }
 
@@ -27,9 +18,8 @@ function GuessResults({
           key={num}
           guess={guessList[num]}
           answer={answer}
-          setHasWon={setHasWon}
+          setGameStatus={setGameStatus}
           setNumOfGuesses={setNumOfGuesses}
-          setShowEndBanner={setShowEndBanner}
         />
       ))}
     </div>

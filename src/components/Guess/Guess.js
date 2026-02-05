@@ -1,7 +1,7 @@
 import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 
-function Guess({ guess, answer, setHasWon, setShowEndBanner }) {
+function Guess({ guess, answer, setGameStatus }) {
   const guessResult = checkGuess(guess, answer);
 
   function hasUserWon() {
@@ -13,8 +13,7 @@ function Guess({ guess, answer, setHasWon, setShowEndBanner }) {
       guessResult[3].status === "correct" &&
       guessResult[4].status === "correct"
     ) {
-      setShowEndBanner(true);
-      setHasWon(true);
+      setGameStatus("won");
     }
   }
 
