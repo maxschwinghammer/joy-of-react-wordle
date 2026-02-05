@@ -1,10 +1,11 @@
+import { useEffect } from "react";
 import { range } from "../../utils";
 import { checkGuess } from "../../game-helpers";
 
 function Guess({ guess, answer, setGameStatus }) {
   const guessResult = checkGuess(guess, answer);
 
-  function hasUserWon() {
+  useEffect(() => {
     if (
       guess &&
       guessResult[0].status === "correct" &&
@@ -15,11 +16,10 @@ function Guess({ guess, answer, setGameStatus }) {
     ) {
       setGameStatus("won");
     }
-  }
+  }, [guess, guessResult, setGameStatus]);
 
   return (
     <p className="guess">
-      {hasUserWon()}
       {range(5).map((char) => (
         <span
           key={char}

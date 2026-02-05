@@ -27,7 +27,11 @@ function Game() {
         setGameStatus={setGameStatus}
         setNumOfGuesses={setNumOfGuesses}
       />
-      <GuessInput guessList={guessList} setGuessList={setGuessList} />
+      <GuessInput
+        guessList={guessList}
+        setGuessList={setGuessList}
+        gameStatus={gameStatus}
+      />
     </>
   );
 }

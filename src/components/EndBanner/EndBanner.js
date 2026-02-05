@@ -1,10 +1,16 @@
 function EndBanner({ gameStatus, numOfGuesses, answer }) {
+  if (gameStatus === "running") return;
+
   if (gameStatus === "won") {
     return (
       <div className="happy banner">
         <p>
           <strong>Congratulations!</strong> Got it in
-          <strong> {numOfGuesses} guesses</strong>.
+          <strong>
+            {" "}
+            {numOfGuesses} {numOfGuesses > 1 ? "guesses" : "guess"}
+          </strong>
+          .
         </p>
       </div>
     );
@@ -16,8 +22,6 @@ function EndBanner({ gameStatus, numOfGuesses, answer }) {
         </p>
       </div>
     );
-  } else {
-    return;
   }
 }
 

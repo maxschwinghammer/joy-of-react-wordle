@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
-function GuessInput({ guessList, setGuessList }) {
+function GuessInput({ guessList, setGuessList, gameStatus }) {
   const [guess, setGuess] = useState("");
 
   function handleSubmit(event) {
@@ -27,6 +27,7 @@ function GuessInput({ guessList, setGuessList }) {
         minLength={5}
         maxLength={5}
         required={true}
+        disabled={gameStatus !== "running"}
         onChange={(event) => setGuess(event.target.value.toUpperCase())}
       />
     </form>
