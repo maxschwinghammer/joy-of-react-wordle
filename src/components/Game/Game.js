@@ -1,20 +1,36 @@
-import { useState } from "react";
+import { use, useState } from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
-import { eventNames } from "process";
 import GuessInput from "../GuessInput/GuessInput";
 import GuessResults from "../GuessResults";
+import EndBanner from "../EndBanner/EndBanner";
 
 const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
   const [guessList, setGuessList] = useState([]);
+  const [hasWon, setHasWon] = useState(false);
+  const [showEndBanner, setShowEndBanner] = useState(false);
+  const [numOfGuesses, setNumOfGuesses] = useState(0);
 
   return (
     <>
-      <GuessResults guessList={guessList} answer={answer} />
+      {showEndBanner && (
+        <EndBanner
+          hasWon={hasWon}
+          numOfGuesses={numOfGuesses}
+          answer={answer}
+        />
+      )}
+      <GuessResults
+        guessList={guessList}
+        answer={answer}
+        setHasWon={setHasWon}
+        setNumOfGuesses={setNumOfGuesses}
+        setShowEndBanner={setShowEndBanner}
+      />
       <GuessInput guessList={guessList} setGuessList={setGuessList} />
     </>
   );
