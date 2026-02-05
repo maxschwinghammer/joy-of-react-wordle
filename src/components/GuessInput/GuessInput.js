@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { NUM_OF_GUESSES_ALLOWED } from "../../constants";
 
 function GuessInput({ guessList, setGuessList }) {
   const [guess, setGuess] = useState("");
@@ -7,7 +8,9 @@ function GuessInput({ guessList, setGuessList }) {
     event.preventDefault();
     console.info({ guess });
 
-    setGuessList([...guessList, guess]);
+    if (guessList.length < NUM_OF_GUESSES_ALLOWED) {
+      setGuessList([...guessList, guess]);
+    }
 
     setGuess("");
   }
