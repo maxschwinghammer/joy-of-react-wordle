@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 import { sample } from "../../utils";
 import { WORDS } from "../../data";
 import { eventNames } from "process";
 import GuessInput from "../GuessInput/GuessInput";
+import GuessResults from "../GuessResults";
 
 const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guess, setGuess] = useState("");
+  const [guessList, setGuessList] = useState([]);
 
   return (
     <>
-      <GuessInput guess={guess} setGuess={setGuess} />
+      <GuessResults guessList={guessList} />
+      <GuessInput guessList={guessList} setGuessList={setGuessList} />
     </>
   );
 }
